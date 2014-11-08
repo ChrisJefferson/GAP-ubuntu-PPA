@@ -1,0 +1,37 @@
+#!/bin/sh -e
+PKGNAME=gap-for-opt
+GAP_MAJOR=4
+GAP_MINOR=7
+GAP_PATCH=5
+GAP_YEAR=2014
+GAP_MONTH=05
+GAP_DAY=24
+GAP_TIME=20_02
+
+GAP_MD5=e3cfd08c8ed09cc28314a7e6c40d06ab
+
+
+GAP_UPSTREAM_TAR=gap${GAP_MAJOR}r${GAP_MINOR}p${GAP_PATCH}_${GAP_YEAR}_${GAP_MONTH}_${GAP_DAY}-${GAP_TIME}.tar.bz2
+GAP_URL=ftp://ftp.gap-system.org/pub/gap/gap47/tar.bz2/${GAP_UPSTREAM_TAR}
+GAP_DEBIAN_TAR=${PKGNAME}_${GAP_MAJOR}.${GAP_MINOR}.${GAP_PATCH}_${GAP_YEAR}${GAP_MONTH}${GAP_DAY}.orig.tar.bz2
+
+if [ ! -f ${GAP_DEBIAN_TAR} ] ; then
+    # TODO: check if curl is available; if not, fall back to wget;
+    #       and/or "ftp",  or eventually error out
+    curl -o ${GAP_DEBIAN_TAR} ${GAP_URL}
+fi
+
+if [ ! -f ${GAP_DEBIAN_TAR} ] ; then
+    echo "Error, failed to download ${GAP_DEBIAN_TAR}"
+fi
+
+# Verify the MD5 checksum
+# TODO: fall back to other md5 tools (md5, md5sum, openssl, ...)
+ACTUAL_MD5=`md5 -q ${GAP_DEBIAN_TAR}`
+if [ $GAP_MD5 != $ACTUAL_MD5 ] ; then
+    echo "Error, ${GAP_DEBIAN_TAR} has bad checksum"
+    exit 1
+fi
+
+echo "${GAP_DEBIAN_TAR} is ready for use"
+exit 0
