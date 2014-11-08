@@ -1,0 +1,31 @@
+gap-for-opt (4.7.5+20140522-1ubuntu4) precise; urgency=low
+
+  * add dep on ncurses for browse package
+  
+  * add missing sysinfo.gap file
+
+ -- Max Horn <max@quendi.de>  Wed, 25 Aug 2014 23:11:07 +0000
+
+gap-for-opt (4.7.5+20140522-1ubuntu3) precise; urgency=low
+
+  * fix 3 
+
+ -- Max Horn <max@quendi.de>  Wed, 20 Aug 2014 22:38:33 +0000
+
+gap-for-opt (4.7.5+20140522-1ubuntu2) precise; urgency=low
+
+  * fix 2 
+
+ -- Max Horn <max@quendi.de>  Wed, 20 Aug 2014 22:38:25 +0000
+
+gap-for-opt (4.7.5+20140522-1ubuntu1) precise; urgency=low
+
+  * fix 1 
+
+ -- Max Horn <max@quendi.de>  Wed, 20 Aug 2014 22:38:10 +0000
+
+gap-for-opt (4.7.5+20140522-1) precise; urgency=low
+
+  * Initial release
+
+ -- Max Horn <max@quendi.de>  Thu, 24 Jul 2014 14:29:58 +0000

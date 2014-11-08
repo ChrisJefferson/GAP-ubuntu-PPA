@@ -1,0 +1,14 @@
+bin opt/gap
+doc opt/gap
+grp opt/gap
+lib opt/gap
+pkg opt/gap
+prim opt/gap
+small opt/gap
+src opt/gap
+trans opt/gap
+tst opt/gap
+
+CITATION opt/gap
+gap.ini opt/gap
+sysinfo.gap* opt/gap

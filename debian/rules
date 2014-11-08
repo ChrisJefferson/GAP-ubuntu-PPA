@@ -1,0 +1,33 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+%:
+	dh $@ --parallel
+
+override_dh_auto_configure:
+	./configure --with-gmp=system
+
+override_dh_auto_build:
+	make
+	# remove some files that cause lintian to complain
+	rm -f pkg/qaos/doc/qaos.info
+	rm -f pkg/Hap1.10/lib/PolyComplexes/oldprog
+	rm -f pkg/Hap1.10/lib/PolyComplexes/prog
+	rm -f pkg/Hap1.10/lib/PolyComplexes/progold
+	rm -f pkg/happrime/make_tarball
+	rm -f pkg/recog-1.2.2/gap/bbox/bbtogap.py
+	# compile some packages
+	cd pkg && for pkg in ace Browse edim example Gauss grape guava*; do \
+	    ( cd "$$pkg" && ./configure && make ) \
+	done
+	cd pkg && for pkg in anupq* cvec* io* orb* nq-*; do \
+	    ( cd "$$pkg" && ./configure && make ) \
+	done
+
+override_dh_auto_install:
+    # hack: 'relocate' GAP
+	sed -i -e 's|^GAP_DIR=".\+"|GAP_DIR="/opt/gap"|' bin/gap-default*.sh
+	dh_installdirs -a
+	dh_install -a

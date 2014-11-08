@@ -1,0 +1,16 @@
+Source: gap-for-opt
+Section: math
+Priority: extra
+Maintainer: Max Horn <max@quendi.de>
+Build-Depends: debhelper (>= 8.0.0), autotools-dev, libgmp10-dev, libreadline6-dev, libncurses5-dev
+Standards-Version: 3.9.2
+Homepage: http://www.gap-system.org/
+#Vcs-Git: git://git.debian.org/collab-maint/gap-for-opt.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/gap-for-opt.git;a=summary
+
+Package: gap-for-opt
+Architecture: any
+Depends: ${shlibs:Depends}, libgmp10, libreadline6, libncurses5, ${misc:Depends}
+Description: GAP package installing to /opt
+ This is a quick & dirty Debian package for the GAP compute algebra
+ system, installing everything into /opt/gap.
