@@ -29,5 +29,6 @@ override_dh_auto_build:
 override_dh_auto_install:
     # hack: 'relocate' GAP
 	sed -i -e 's|^GAP_DIR=".\+"|GAP_DIR="/opt/gap"|' bin/gap-default*.sh
+	sed -i -e 's|^gap_bin=.\+/bin/|gap_bin=/opt/gap/bin/|' bin/*/gac bin/*/sysinfo.gap
 	dh_installdirs -a
 	dh_install -a
