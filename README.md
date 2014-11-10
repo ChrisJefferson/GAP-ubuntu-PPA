@@ -51,6 +51,7 @@ Running the `fetch-gap` script takes care of the following steps:
 * The following steps can be taken in the VM (or on a regular Ubuntu 
 system) to build and upload the source .deb
 
+```
     # Set personal infromation
     export DEBFULLNAME="Max Horn"
     export DEBEMAIL="max@quendi.de"
@@ -70,4 +71,4 @@ system) to build and upload the source .deb
     # Moreover, the upload requires that you setup a GnuPG key as
     # described above
     dput ppa:mhorn/gap gap-for-opt_4.7.5+20140522-1ubuntu4_source.changes
-
+```
