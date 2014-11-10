@@ -7,13 +7,55 @@ installing [GAP](http://www.gap-system.org/) to /opt, which then can be uploaded
 In particular, it describe how I create the packages in my personal GAP PPA:
 
   https://launchpad.net/~mhorn/+archive/ubuntu/gap
+  
+The resulting package can be used with services like [Travis CI](https://travis-ci.org/)
+in order to run test suites of GAP packages "in the cloud".
 
 ## Step-by-step instructions
 
+### Setup a Ubuntu Launchpad account
 
-### Download the sources
+TODO
 
-Running the `fetch-gap` script takes care of the following steps:
+Most what you need is described here:
+* http://developer.ubuntu.com/publish/apps/other-forms-of-submitting-apps/ppa/
+
+* create Ubuntu Launchpad.net account for PPA
+* * https://help.launchpad.net/YourAccount/NewAccount
+
+* create / upload a GnuPG key for use with that, and also SSH key(s)
+* * https://help.launchpad.net/YourAccount/ImportingYourPGPKey
+* * https://help.launchpad.net/YourAccount/CreatingAnSSHKeyPair
+
+* Sign Code of conduct
+* * https://help.launchpad.net/Signing%20the%20Ubuntu%20Code%20of%20Conduct
+
+
+### Setup a machine with correct Ubuntu version
+
+Currently, Travis is using Ubuntu 12.04 LTS ""Precise Pangolin" 64 bit,
+[see here](http://docs.travis-ci.com/user/ci-environment/#CI-environment-OS).
+The easiest way to build the require Debian source packages is on
+a machine running exactly that. (Note that in principle, a more recent
+Ubuntu version should also be OK).
+
+The easiest way to do that is to run a virtual machine. For this, I used
+[Vagrant](https://www.vagrantup.com/), as that makes it very easy
+to setup and configure the VM.
+
+TODO: Describe setup of the VM; in particular, that the GnuPG key needs to be available there.
+
+
+* describe Vagrant setup;
+   also state which packages need to be installed
+   (Of course if you are using Ubuntu anyway, you don't need to
+   setup a VM)
+
+
+### Download the GAP sources
+
+Running the `fetch-gap` script on your Ubuntu machine resp. (if you are using a VM)
+in a directory accessible from the VM takes care of the following steps:
 
 1. Download the GAP package archive you want to package, usually the latest,
    which currently is
@@ -26,21 +68,18 @@ Running the `fetch-gap` script takes care of the following steps:
    
 3. Rename the source tarball to the format Debian expects
 
-      mv gap4r7p5_2014_05_24-20_02.tar.bz2 gap-for-opt_4.7.5+20140524.orig.tar.bz2
+    ```mv gap4r7p5_2014_05_24-20_02.tar.bz2 gap-for-opt_4.7.5+20140524.orig.tar.bz2```
 
-### TODO
+### Prepare
 
-* describe creating Ubuntu Launchpad.net account for PPA
-* * https://help.launchpad.net/YourAccount/NewAccount
+* extract the `gap-for-opt_4.7.5+20140524.orig.tar.bz2 tarball`
+* rename the extracted directory to `gap-for-opt-4.7.5+20140524`
+  (note how `_4` changed to `-4`)
+* copy or move the `debian` directory into the extracted directory
 
-* describe how to create / upload a GnuPG key for use with that, and also SSH key(s)
-* * https://help.launchpad.net/YourAccount/ImportingYourPGPKey
-* * https://help.launchpad.net/YourAccount/CreatingAnSSHKeyPair
 
-* describe Vagrant setup;
-   also state which packages need to be installed
-   (Of course if you are using Ubuntu anyway, you don't need to
-   setup a VM)
+### Upload
+
 
 * Read these instructions:
 * * https://help.launchpad.net/Packaging/PPA
@@ -67,8 +106,9 @@ system) to build and upload the source .deb
 
     # Finally, upload it. Make sure to use the right PPA name here;
     # and also the file name must be adapted (in particular, the revision
-    # string, i.e. "ubuntu4").
-    # Moreover, the upload requires that you setup a GnuPG key as
+    # string, i.e. "ubuntu5").
+    # Moreover, the upload requires that you already setup your GnuPG key as
     # described above
-    dput ppa:mhorn/gap gap-for-opt_4.7.5+20140522-1ubuntu4_source.changes
+    dput ppa:mhorn/gap gap-for-opt_4.7.5+20140522-1ubuntu5_source.changes
 ```
+
