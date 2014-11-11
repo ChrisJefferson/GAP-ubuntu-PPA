@@ -79,7 +79,7 @@ in a directory accessible from the VM takes care of the following steps:
 * rename the extracted directory to `gap-for-opt-4.7.5+20140524`
   (note how `_4` changed to `-4`)
 * copy or move the `debian` directory into the extracted directory
-
+* if you are using your own package, look for all occurrences of 'Max Horn' and 'gap-for-opt' and change them, and empty the changelog (I had to leave one entry in the changelog to make the following scripts work. I just put 'initial commit').
 
 ### Upload
 
