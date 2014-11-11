@@ -43,13 +43,16 @@ The easiest way to do that is to run a virtual machine. For this, I used
 [Vagrant](https://www.vagrantup.com/), as that makes it very easy
 to setup and configure the VM.
 
-TODO: Describe setup of the VM; in particular, that the GnuPG key needs to be available there.
+After installing valgrind, run the following command to download a VM, and start the machine running:
 
+    vagrant up
+    
+Any files you place the this directory will be accessable in the VM under the directory ````/valgrind````.
+You can use this to move your .gnupg directory. You can log into the VM by running ````valgrind ssh````.
 
-* describe Vagrant setup;
-   also state which packages need to be installed
-   (Of course if you are using Ubuntu anyway, you don't need to
-   setup a VM)
+You will also need to ```apt-get install dput devscripts debhelper dh-make``` (this is done automatically by vagrant).
+
+(Of course if you are using Ubuntu anyway, you don't need to setup a VM)
 
 
 ### Download the GAP sources
