@@ -43,14 +43,14 @@ The easiest way to do that is to run a virtual machine. For this, I used
 [Vagrant](https://www.vagrantup.com/), as that makes it very easy
 to setup and configure the VM.
 
-After installing valgrind, run the following command to download a VM, and start the machine running:
+After installing Vagrant, run the following command to download a VM, and start the machine running:
 
     vagrant up
     
 Any files you place the this directory will be accessable in the VM under the directory ````/valgrind````.
 You can use this to move your .gnupg directory. You can log into the VM by running ````valgrind ssh````.
 
-You will also need to ```apt-get install dput devscripts debhelper dh-make``` (this is done automatically by vagrant).
+You will also need to ```apt-get install dput devscripts debhelper dh-make``` (this is done automatically by Vagrant).
 
 (Of course if you are using Ubuntu anyway, you don't need to setup a VM)
 
@@ -79,7 +79,10 @@ in a directory accessible from the VM takes care of the following steps:
 * rename the extracted directory to `gap-for-opt-4.7.5+20140524`
   (note how `_4` changed to `-4`)
 * copy or move the `debian` directory into the extracted directory
-* if you are using your own package, look for all occurrences of 'Max Horn' and 'gap-for-opt' and change them, and empty the changelog (I had to leave one entry in the changelog to make the following scripts work. I just put 'initial commit').
+* if you are making your own package:
+  * look for all occurrences of 'Max Horn' and 'gap-for-opt' and change them (both in files, and filenames)
+  * Empty the changelog (You may find you need one entry in the changelog to make the following scripts work. I just put 'initial commit')
+  * Be aware that package names cannot contain capital letters.
 
 ### Upload
 
